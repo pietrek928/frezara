@@ -11,8 +11,8 @@ class stepper_motor : motor {
     void reg_spd( float fi, float w, float f ) {
         float k = (w+f*kf)*kw;
         cs_t v = cs_2pi( fi );
-        pwm_setup( reg+0, v.c*k );
-        pwm_setup( reg+1, v.s*k );
+        pwm_set( reg+0, v.c*k );
+        pwm_set( reg+1, v.s*k );
     }
 };
 

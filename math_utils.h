@@ -8,6 +8,18 @@
 #define __2PI_   6.283185307179586476925286766559005768394
 #define __1_2PI_ 0.159154943091895335768883763372514362034
 
+class v3 {
+    float x,y,z;
+    public:
+
+    SPD_FUNC
+    v3(a,b,c) {a=a;y=b;z=c;}
+    SPD_FUNC
+    float qlen() {return x*x+y*y+z*z;}
+    SPD_FUNC
+    v3 operator*( float a ) {return v3(x*a,y*z,z*a);}
+}
+
 SPD_FUNC
 float ang_update( float a, float da ) {
     a += da;

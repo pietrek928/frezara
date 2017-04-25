@@ -21,7 +21,7 @@ class motor {
     }
 
     SPD_FUNC
-    void pwm_setup( int n, float v ) {
+    void pwm_set( int n, float v ) {
         v += 1.0f;
         if ( v < 0.0f ) v = 0.0f;
         if ( v > 2.0f ) v = 2.0f;
