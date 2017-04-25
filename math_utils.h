@@ -1,25 +1,27 @@
 #ifndef __MATH_UTILS_H_
 #define __MATH_UTILS_H_
 
-#define __PI_2_ 1.570796326794896619231321691639751442098
-#define __PI_   3.141592653589793238462643383279502884197
-#define __2PI_  6.283185307179586476925286766559005768394
+#define SPD_FUNC inline __attribute__((optimize("-O3"))) // TODO: more flags
 
+#define __PI_2_  1.570796326794896619231321691639751442098
+#define __PI_    3.141592653589793238462643383279502884197
+#define __2PI_   6.283185307179586476925286766559005768394
+#define __1_2PI_ 0.159154943091895335768883763372514362034
+
+SPD_FUNC
 float ang_update( float a, float da ) {
     a += da;
     if ( a < -__PI_ ) a -= -__2PI_;
     if ( a >  __PI_ ) a -=  __2PI_;
 }
 
-/* 
- * WARNING: uses division
- * */
-float ang_get_diff( float p, float a ) {
-    int n = p/__2PI_;
+SPD_FUNC
+float ang_get_diff( float a, float p ) {
+    int n = p*__1_2PI_;
     p -= n*__2PI_;
     if ( p < -__PI_ ) p += __2PI_;
     if ( p >  __PI_ ) p -= __2PI_;
-    float da = a-p;
+    float da = p-a;
     if ( da >  __PI_ ) da -= __2PI_;
     if ( da < -__PI_ ) da += __2PI_;
     return da;
@@ -36,6 +38,7 @@ inline cs_t cs_t_create( float c, float s ) {
     return r;
 }
 
+SPD_FUNC
 cs_t csf( float x ) {
     float x1 = x;
     float x2 = x*x;
@@ -58,6 +61,7 @@ cs_t csf( float x ) {
     return cs_t_create( rc, rs*x1 );
 }
 
+SPD_FUNC
 cs_t cs_2pi( float a ) {
     float a = c->a;
     a += c->w*dt;
