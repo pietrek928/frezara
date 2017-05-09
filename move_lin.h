@@ -5,6 +5,9 @@
 
 class move_lin {
     v3 v;
+    public:
+    move_lin(v3 _v) v(_v) {} 
+
     v3 spd( float t ) {
         return v;
     }
